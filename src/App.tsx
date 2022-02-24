@@ -25,7 +25,7 @@ function App() {
       case "REMOVE":
         return state.filter(({ id }) => id !== action.id);
     }
-  }, JSON.parse(`${localStorage.getItem("list")}`));
+  }, []);
 
   const newTodoRef = useRef<HTMLInputElement>(null);
   // useCallback
@@ -38,11 +38,6 @@ function App() {
       newTodoRef.current.value = "";
     }
   }, []);
-
-  useEffect(() => {
-    // This is a side-effect and belongs in an effect
-    localStorage.setItem("list", JSON.stringify(todos));
-  }, [todos]);
 
   return (
     // useReducer
